@@ -63,3 +63,13 @@ new UmParaCemStream().pipe(process.stdout); //<-encaminhar os dados criados na c
 - \_write
 - \_transform
 - \_duplex(\_read, \_write): pouco usado
+
+### Aplicação stream
+
+O arquivo streamHttpServer simula o servidor que recebe e transforma o dado em tempo real e o fakeUploadHttpStream uma requisição de envio de dados para o servidor em streamHttpServer
+
+Os arquivos cópias de servidor e chamadaDeServidor servem para simular uma stream que o processamento dos dados não deverá ocorrer em picotes, mas após receber todos os dados
+
+<img src="../img/requisicaoStream.png" width="300px" height="150px"/>
+
+<img src="../img/respostaStream.png" width="300px" height="150px"/>
