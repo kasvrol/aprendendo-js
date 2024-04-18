@@ -1,6 +1,6 @@
-import { Readable } from 'stream'
+import { Readable, Writable, Transform } from 'stream'
 
-class UmParaCemStream extends Readable{
+class leituraDeDados extends Readable{
     index = 1;
 
     _read() {
@@ -17,5 +17,19 @@ class UmParaCemStream extends Readable{
     }
 }
 
-new UmParaCemStream().pipe(process.stdout) //<-encaminhar os dados criados na classe para a saída
+class transformaDados extends Transform{
+    _transform(chunk, enconding, callback) {//chunk-> dados a serem usados
+        const transforma = Number(chunk.toString()) * -1
+        callback(null, Buffer.from(String(transforma)))//parametros(erro se existir, dado transformado)
+    }
+}
+
+class escritaDeDados extends Writable{
+    _write(chunk, enconding, callback) {//chunk-> dados a serem usados
+        console.log(Number(chunk.toString()))
+        callback()//<-realiza a função
+    }
+}
+
+new leituraDeDados().pipe(new transformaDados()).pipe(new escritaDeDados()) //<-encaminhar os dados criados na classe para a saída
 //saída de dados por segundo

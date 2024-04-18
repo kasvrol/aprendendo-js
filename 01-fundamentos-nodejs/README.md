@@ -56,3 +56,10 @@ new UmParaCemStream().pipe(process.stdout); //<-encaminhar os dados criados na c
 ```
 
 <img src="../img/stream2.png" width="300px" height="150px"/>
+
+### Métodos stream
+
+- \_read
+- \_write
+- \_transform
+- \_duplex(\_read, \_write): pouco usado
