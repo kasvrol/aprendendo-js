@@ -9,13 +9,13 @@ Aplicações:
 
 ### Streams
 
-Processo síncrono de entrada e registro de dados (não existe necessidade de subir os dados para leitura para apenas depois realizar o registro).
+Processo assíncrono de entrada e registro de dados (não existe necessidade de subir os dados para leitura para apenas depois realizar o registro).
+--definição rocketseat: Mecanismos para ler e escrever dados de forma assíncrona, controlada e em partes
 
 - stream de entrada: stdin
 - stream de saída: stdout
 
-Com funções de encaminhamento, podemos brincar com a funcionalidade de streams
-encaminhando os dados de entrada para a saída nas duas funções
+Com funções de encaminhamento (pipe), podemos encaminhar os dados provindos de uma stream para outra
 
 ```js
 process.stdin.pipe(process.stdout);
@@ -28,7 +28,7 @@ process.stdin.on("data", (data) => {
 });
 ```
 
-<img src="../img/stream.png" width="300px" height="150px"/>
+<img src="../img/fundamentos/stream.png" width="300px" height="150px"/>
 
 - \_read(): Método que retorna a stream
 
@@ -50,12 +50,12 @@ class UmParaCemStream extends Readable {
       this.push(buf);
     }
   }
-}
+} //from é o método usado para criar um buffer a partir de uma string no node
 
 new UmParaCemStream().pipe(process.stdout); //<-encaminhar os dados criados na classe para a saída
 ```
 
-<img src="../img/stream2.png" width="300px" height="150px"/>
+<img src="../img/fundamentos/stream2.png" width="300px" height="150px"/>
 
 ### Métodos stream
 
@@ -70,6 +70,47 @@ O arquivo streamHttpServer simula o servidor que recebe e transforma o dado em t
 
 Os arquivos cópias de servidor e chamadaDeServidor servem para simular uma stream que o processamento dos dados não deverá ocorrer em picotes, mas após receber todos os dados
 
-<img src="../img/requisicaoStream.png" width="300px" height="150px"/>
+<img src="../img/fundamentos/requisicaoStream.png" width="300px" height="150px"/>
 
-<img src="../img/respostaStream.png" width="300px" height="150px"/>
+<img src="../img/fundamentos/respostaStream.png" width="300px" height="150px"/>
+
+#### Buffer
+
+Tipo de dado para trabalhar dentro do node, daria para definir como o jeito de transformar dados em binários(baixo nível) para facilitar o trabalho com trânsito de dados dentro do node.
+--definição rocketseat: Estruturas de dados que representa informações binárias
+
+### Requisição
+
+Esse trecho de código processa os dados da requisição vindos como binários
+
+```js
+const buffers = [];
+for await (const chunk of req) {
+  buffers.push(chunk);
+}
+```
+
+--definição rocketseat-> Chunks: Pedaços de dados que são lidos e escritos em uma stream de forma assíncrona
+Se printar chuck, vai aparecer assim no terminal:
+
+```bash
+Restarting 'src/server.js'
+<Buffer 7b 0d 0a 20 20 20 20 22 6e 61 6d 65 22 3a 20 22 41 6e 61 20 4b 61 72 6f 6c 69 6e 61 22 2c 0d 0a 20 20 20 20 22 65 6d 61 69 6c 22 3a 20 22 65 6d 61 69 ... 15 more bytes>
+```
+
+Então, converte os dados binários para string e depois para json
+
+```js
+const bufferToJson = Buffer.concat(buffers).toString();
+console.log(JSON.parse(bufferToJson)); //os dados que vieram na requisição
+```
+
+Joga a função de transformação dentro de um try/catch, pois, caso a requisição seja feita para leitura, não existirá dados para transformar, quebrando a aplicação
+
+```bash
+Error: SyntaxError: Unexpected end of JSON input
+```
+
+<img src="../img/fundamentos/reqBuffer.png" width="300px" height="150px"/>
+
+<img src="../img/fundamentos/resBuffer.png" width="300px" height="150px"/>
