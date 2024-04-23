@@ -55,7 +55,7 @@ class UmParaCemStream extends Readable {
 new UmParaCemStream().pipe(process.stdout); //<-encaminhar os dados criados na classe para a saída
 ```
 
-<img src="../img/fundamentos/stream2.png" width="300px" height="150px"/>
+<img src="../img/fundamentos/stream2.png" width="650px" height="100px"/>
 
 ### Métodos stream
 
@@ -70,9 +70,9 @@ O arquivo streamHttpServer simula o servidor que recebe e transforma o dado em t
 
 Os arquivos cópias de servidor e chamadaDeServidor servem para simular uma stream que o processamento dos dados não deverá ocorrer em picotes, mas após receber todos os dados
 
-<img src="../img/fundamentos/requisicaoStream.png" width="300px" height="150px"/>
+<img src="../img/fundamentos/requisicaoStream.png" width="550px" height="100px"/>
 
-<img src="../img/fundamentos/respostaStream.png" width="300px" height="150px"/>
+<img src="../img/fundamentos/respostaStream.png" width="600px" height="100px"/>
 
 #### Buffer
 
@@ -111,6 +111,6 @@ Joga a função de transformação dentro de um try/catch, pois, caso a requisi�
 Error: SyntaxError: Unexpected end of JSON input
 ```
 
-<img src="../img/fundamentos/reqBuffer.png" width="300px" height="150px"/>
+<img src="../img/fundamentos/reqBuffer.png" width="600px" height="300px"/>
 
-<img src="../img/fundamentos/resBuffer.png" width="300px" height="150px"/>
+<img src="../img/fundamentos/resBuffer.png" width="600px" height="300px"/>
