@@ -114,3 +114,28 @@ Error: SyntaxError: Unexpected end of JSON input
 <img src="../img/fundamentos/reqBuffer.png" width="600px" height="300px"/>
 
 <img src="../img/fundamentos/resBuffer.png" width="600px" height="300px"/>
+
+### Database
+
+#### Hard Code
+
+**Arquivo database**
+
+- Para inserir, verifica se o valor existe, se existe insere o novo valor, senão, cria a chave e insere o valor
+- Para buscar, verifica se o valor existe, senão envia um array vazio.
+- '#' privar a variavel do arquivo
+
+```js
+export class Database {
+  #database = {};
+}
+```
+
+_import fs from "fs/promises";_
+
+- função writeFile para escrever em um arquivo: writeFile(nome_do_arquivo, estrutura_de_dado);
+- função readFile para ler dados de um arquivo: readFile(endereco_do_arquivo, tipo_de_codificação('utf-8', 'utf-16', ...));
+
+A função de leitura _select(tabela)_ recebe o nome da tabela (chave do objeto) e retorna o valor desse.
+
+A função de escrita _insert(tabela, dados)_ verifica se existe o valor do objeto, caso exista, lê o valor da chave, senão, cria a chave do objeto e e insere o valor como array de objetos.
