@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "7eac9670-32d2-4aff-973b-341f10e53879",
+		"name": "Node - Rocketseat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19099788"
+	},
+	"item": [
+		{
+			"name": "Stream",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3333/users?search=email@email.com",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "email@email.com"
+						},
+						{
+							"key": "",
+							"value": "Karolina",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stream",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ana\",\r\n    \"email\": \"email@email.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api hardcode",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3333/users/e909296d-29ec-45db-9c96-d7a03c50291b",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"users",
+						"e909296d-29ec-45db-9c96-d7a03c50291b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api hardcode",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"José\",\r\n    \"email\": \"email@email.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3333/users/4ad2c288-f439-46a3-a55b-baa85c5db167",
+					"host": [
+						"localhost"
+					],
+					"port": "3333",
+					"path": [
+						"users",
+						"4ad2c288-f439-46a3-a55b-baa85c5db167"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

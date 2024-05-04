@@ -16,8 +16,17 @@ export class Database {
   #persist() {
     fs.writeFile("db.json", JSON.stringify(this.#database));
   }
-  select(tabela) {
-    const dados = this.#database[tabela] ?? [];
+  select(tabela, search) {
+    let dados = this.#database[tabela] ?? [];
+    if (search) {
+      dados = dados.filter((linha) => {
+        return Object.entries(search).some(([key, value]) => {
+          return linha[key].toLowerCase().includes(value.toLowerCase());
+        });
+      });
+    }
+
+    console.log({ dados });
     return dados;
   }
 
@@ -31,5 +40,25 @@ export class Database {
     this.#persist();
 
     return dados;
+  }
+
+  update(tabela, id, dados) {
+    const rowIndex = this.#database[tabela].findIndex(
+      (linha) => linha.id === id
+    );
+    if (rowIndex > -1) {
+      this.#database[tabela][rowIndex] = { id, ...dados };
+      this.#persist;
+    }
+  }
+
+  delete(tabela, id) {
+    const rowIndex = this.#database[tabela].findIndex(
+      (linha) => linha.id === id
+    );
+    if (rowIndex > -1) {
+      this.#database[tabela].splice(rowIndex, 1);
+      this.#persist();
+    }
   }
 }
