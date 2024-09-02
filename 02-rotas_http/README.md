@@ -13,3 +13,7 @@ Necessário configurar script e instalar tsx para rodar node com typescipt
   "devDependencies": {
     "tsx": "^4.11.0"
 ```
+
+comando para criar migrations
+```bash
+  npx knex migrate:make create-documents --knexfile knexfile.ts```
